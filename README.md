@@ -11,5 +11,5 @@
 
 <p align="center"> 
   Visitors count<br>
-  <img src="https://profile-counter.glitch.Mohdzubair3056/count.svg" />
+  ![Visitor Count](https://profile-counter.glitch.me/{Mohdzubair3056}/count.svg)
 </p>
