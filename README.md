@@ -3,6 +3,7 @@
 -   🎓 I'm a Computer Science Undergrad
 -   🖥 Exploring my skills in Backend Development
 -   📨 Reach me at: mohdzubair3056@gmail.com
+-   💡 Machine Learning Enthusiast
 -   ❤️ Let's build a healthy community together
 
 <a href="https://github.com/Mohdzubair3056">
@@ -11,5 +12,5 @@
 
 <p align="center"> 
   Visitors count<br>
- 
+ <img src="https://profile-counter.glitch.me/Mohdzubair3056/count.svg" />
 </p>
