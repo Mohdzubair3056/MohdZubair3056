@@ -11,5 +11,5 @@
 
 <p align="center"> 
   Visitors count<br>
-  ![Visitor Count](https://profile-counter.glitch.me/{Mohdzubair3056}/count.svg)
+ 
 </p>
