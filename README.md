@@ -1,16 +1,14 @@
-### Hi there 👋
+# Hi there I am Mohd Zubair.👋
 
-<!--
-**Mohdzubair3056/MohdZubair3056** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+-   🎓 I'm a Computer Science Undergrad
+-   🖥 Exploring my skills in Backend Development
+-   📨 Reach me at: mohdzubair3056@gmail.com
 
-Here are some ideas to get you started:
+<a href="https://github.com/Mohdzubair3056">
+<img height="160em" src="https://github-readme-stats.vercel.app/api?username=Mohdzubair3056&show_icons=true&include_all_commits=true&custom_title=GitHub+Stats&theme=vue">
+<img height="160em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Mohdzubair3056&layout=compact&theme=vue"></a>
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+<p align="center"> 
+  Visitors count<br>
+  <img src="https://profile-counter.glitch.Mohdzubair3056/count.svg" />
+</p>
