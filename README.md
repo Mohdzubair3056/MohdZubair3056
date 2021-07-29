@@ -1,5 +1,5 @@
 
-(https://github.com/Mohdzubair3056/Mohdzubair3056raw/master/my.gif)
+![Hey there, I'm Cyris. I'm a software developer, a maker and infosec enthusiast. Check out my work](https://github.com/Mohdzubair3056/Mohdzubair3056/master/my.gif)
 
 # Hi there I am Mohd Zubair.👋
 
