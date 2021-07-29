@@ -1,8 +1,6 @@
 
 ![Hey there, I'm Cyris. I'm a software developer, a maker and infosec enthusiast. Check out my work](https://github.com/Mohdzubair3056/Mohdzubair3056/raw/main/myGif.gif)
 
-# Hi there I am Mohd Zubair.👋
-
 -   🎓 I'm a Computer Science Undergrad
 -   🖥 Exploring my skills in Backend Development
 -   📨 Reach me at: mohdzubair3056@gmail.com
