@@ -1,4 +1,6 @@
 
+(https://github.com/Mohdzubair3056/Mohdzubair3056raw/master/my.gif)
+
 # Hi there I am Mohd Zubair.👋
 
 -   🎓 I'm a Computer Science Undergrad
