@@ -19,11 +19,11 @@
 <img align="right" src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=RoomChat&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="45%"/>
 
 
-<br>
+<!-- <br>
 
 Visitors count<br>
 <img src="https://profile-counter.glitch.me/Mohdzubair3056/count.svg" />
-<br>
+<br> -->
 
 <div align="center">
 <h3 align="center">Show some &nbsp;❤️&nbsp; by starring some of the repositories!</h3>
