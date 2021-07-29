@@ -13,8 +13,8 @@
    <br>
    <br><br>
    <p align='center'>
-   <a href="https://www.linkedin.com/in/mohd-zubair-3349871a1/"><img height="40" src="https://raw.githubusercontent.com/8bithemant/8bithemant/master/linkedin.png?raw=true"></a>&nbsp;&nbsp; <a href="https://twitter.com/MohdZub32500820"><img height="40" src="https://raw.githubusercontent.com/8bithemant/8bithemant/master/twitter.png?raw=true"></a>&nbsp;&nbsp;
-<a href="https://www.instagram.com/_mohdzubair_/"><img height="40" src="https://www.pinclipart.com/picdir/big/423-4233593_instagram-logo-lorien-circle-clipart.png?raw=true"></a>&nbsp;&nbsp; <a href="https://twitter.com/MohdZub32500820"><img height="40" src="https://raw.githubusercontent.com/8bithemant/8bithemant/master/spotify.png?raw=true"></a>&nbsp;&nbsp; <a href="https://github.com/Mohdzubair3056"><img height="40" src="https://img.shields.io/github/followers/Mohdzubair3056?label=Follow&style=social"></a>&nbsp;&nbsp;
+   <a target=_blank href="https://www.linkedin.com/in/mohd-zubair-3349871a1/"><img height="40" src="https://raw.githubusercontent.com/8bithemant/8bithemant/master/linkedin.png?raw=true"></a>&nbsp;&nbsp; <a target=_blank href="https://twitter.com/MohdZub32500820"><img height="40" src="https://raw.githubusercontent.com/8bithemant/8bithemant/master/twitter.png?raw=true"></a>&nbsp;&nbsp;
+<a target=_blank href="https://www.instagram.com/_mohdzubair_/"><img height="40" src="https://www.pinclipart.com/picdir/big/423-4233593_instagram-logo-lorien-circle-clipart.png?raw=true"></a>&nbsp;&nbsp; <a target=_blank href="https://twitter.com/MohdZub32500820"><img height="40" src="https://raw.githubusercontent.com/8bithemant/8bithemant/master/spotify.png?raw=true"></a>&nbsp;&nbsp; <a target=_blank href="https://github.com/Mohdzubair3056"><img height="40" src="https://img.shields.io/github/followers/Mohdzubair3056?label=Follow&style=social"></a>&nbsp;&nbsp;
  </p>
    <br>
    
