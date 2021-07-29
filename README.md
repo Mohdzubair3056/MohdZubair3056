@@ -15,10 +15,7 @@
    <br><br>
    <br>
    <br>
-   <br>
-   <br><br>
-
-
+   
 ### ⚙️ &nbsp;GitHub Analytics
 
   <img align="left" src="https://github-readme-stats.vercel.app/api?username=Mohdzubair3056&show_icons=true&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="Zubair's Github Stats" width="60%">
