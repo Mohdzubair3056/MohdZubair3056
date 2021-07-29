@@ -1,22 +1,16 @@
 ![Hey there, I'm Zubair. I'm a CSE Undergrad, a thinker and a development geek. Check out my work](https://github.com/Mohdzubair3056/Mohdzubair3056/raw/main/myif.gif)
 
 <img align="right" height="270px" alt="GIF" src="https://i.pinimg.com/originals/e4/26/70/e426702edf874b181aced1e2fa5c6cde.gif" />
-<!-- -   🎓 I'm a Computer Science Undergrad
+-   🎓 I'm a Computer Science Undergrad 
+   <br>
 -   🖥 Exploring my skills in Backend Development
+   <br>
 -   📨 Reach me at: mohdzubair3056@gmail.com
+   <br>
 -   💡 Machine Learning Enthusiast
--   ❤️ Let's build a healthy community together -->
-### I am a Systems Engineer Specialist at Infosys
-- 🔭 I’m currently working on my Portfolio Website :grin:
-- 🌱 I’m currently learning MERN Stack Development.
-- 👯 I’m looking to collaborate with other Developers :wink:
-- 🥅 2020 Goals: Contribute to Open Source projects
-- 💬 Ask me about anything, I am happy to help :smile:
-- 📬 How to reach me: [Let's get in touch!][linkedin]
-- 🧗 I try to: Go beyond and push the bounds
-- ⚡ Fun fact: I love connecting with different people :raised_hands:
-
-<br>
+   <br>
+-   ❤️ Let's build a healthy community together
+   <br>
 
 
 ### ⚙️ &nbsp;GitHub Analytics
