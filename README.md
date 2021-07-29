@@ -13,6 +13,8 @@
   
 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Mohdzubair3056&show_icons=true&hide_border=true&theme=radical" width="37%" alt="Zubair's Top Languages">
 
+<img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=github-readme-stats&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="50%">
+
 
 
 Visitors count<br>
