@@ -7,10 +7,10 @@
 -   💡 Machine Learning Enthusiast
 -   ❤️ Let's build a healthy community together
 
-<a href="https://github.com/Mohdzubair3056">
+
 ![Zubair's GitHub stats](https://github-readme-stats.vercel.app/api?username=Mohdzubair3056&show_icons=true&theme=radical)
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Mohdzubair3056&theme=radical)]
-</a>
+
 
 
 
