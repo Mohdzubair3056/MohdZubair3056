@@ -15,11 +15,10 @@
 
 ### ⚙️ &nbsp;GitHub Analytics
 
-<div width="100%">
 <span><img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=freshers-portal-site&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="50%"/>
 
-<img align="right" src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=RoomChat&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="49%" /></span>
-</div>
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=RoomChat&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="49%" /></span>
+
 
 <!-- ### ⚙️ &nbsp;GitHub Analytics
 <br><br>
