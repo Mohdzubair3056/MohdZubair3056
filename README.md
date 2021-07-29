@@ -15,7 +15,7 @@
 
 <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=freshers-portal-site&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="50%">
 
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=RoomChat&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="50%">
+<img align="right" src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=RoomChat&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="50%">
 
 
 
