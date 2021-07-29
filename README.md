@@ -26,9 +26,9 @@
 
 ### 🔗 &nbsp;Some Repos
 
-<img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=RoomChat&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="45%"/>
+<img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=RoomChat&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="47%"/>
 
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=abhiyutthan&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="45%"/>
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=abhiyutthan&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="47%"/>
 
 ### 🔨 &nbsp;Languages and Tools
 
