@@ -1,4 +1,4 @@
-https://github.com/Mohdzubair3056/Mohdzubair3056/raw/main/myGif.gif
+![Hey there, I'm Zubair. I'm a CSE Undergrad, a thinker and a development geek. Check out my work](https://github.com/Mohdzubair3056/Mohdzubair3056/raw/main/myGif.gif)
 
 -   🎓 I'm a Computer Science Undergrad
 -   🖥 Exploring my skills in Backend Development
