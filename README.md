@@ -21,15 +21,16 @@
 
 <img src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=abhiyutthan&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="49%"/>
 
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=abhiyutthan&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="49%"/>
 
 
 
-<!-- ### ⚙️ &nbsp;GitHub Analytics
+### ⚙️ &nbsp;GitHub Analytics
 <br><br>
 
 Visitors count<br>
 <img src="https://profile-counter.glitch.me/Mohdzubair3056/count.svg" />
-<br> -->
+<br>
 
 <div align="center">
 <h3 align="center">Show some &nbsp;❤️&nbsp; by starring some of the repositories!</h3>
