@@ -14,16 +14,16 @@
 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Mohdzubair3056&show_icons=true&hide_border=true&theme=radical" width="37%" alt="Zubair's Top Languages">
 
 
-<img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=freshers-portal-site&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="49%"/>
+<img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=freshers-portal-site&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" width="50%"/>
 
 <img align="right" src="https://github-readme-stats.vercel.app/api/pin/?username=Mohdzubair3056&repo=RoomChat&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="zubair's repo" />
 
 
-<!-- <br>
+<br><br>
 
 Visitors count<br>
 <img src="https://profile-counter.glitch.me/Mohdzubair3056/count.svg" />
-<br> -->
+<br>
 
 <div align="center">
 <h3 align="center">Show some &nbsp;❤️&nbsp; by starring some of the repositories!</h3>
