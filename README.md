@@ -13,7 +13,7 @@
 
 ### :zap: Github Stats
 
-  <img align="left" src="https://github-readme-stats.mohdzubair3056.vercel.app/api?username=Mohdzubair3056&show_icons=true&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="Zubair's Github Stats" width="60%">
+  <img align="left" src="https://github-readme-stats.Mohdzubair3056.vercel.app/api?username=Mohdzubair3056&show_icons=true&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="Zubair's Github Stats" width="60%">
   
 <img src="https://github-readme-stats.mohdzubair3056.vercel.app/api/top-langs/?username=Mohdzubair3056&show_icons=true&hide_border=true&theme=radical" width="37%" alt="Zubair's Top Languages">
 
