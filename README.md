@@ -13,8 +13,8 @@
    <br>
    <br><br>
    <p align='center'>
-   <a href="https://www.linkedin.com/in/mohd-zubair-3349871a1/"><img height="40" src="https://raw.githubusercontent.com/8bithemant/8bithemant/master/linkedin.png?raw=true"></a>&nbsp;&nbsp; <a href="https://twitter.com/ShanksPandey"><img height="40" src="https://raw.githubusercontent.com/8bithemant/8bithemant/master/twitter.png?raw=true"></a>&nbsp;&nbsp;
-<a href="https://devpost.com/shashan27"><img height="40" src="https://raw.githubusercontent.com/8bithemant/8bithemant/master/insta.png?raw=true"></a>&nbsp;&nbsp;
+   <a href="https://www.linkedin.com/in/mohd-zubair-3349871a1/"><img height="40" src="https://raw.githubusercontent.com/8bithemant/8bithemant/master/linkedin.png?raw=true"></a>&nbsp;&nbsp; <a href="https://twitter.com/MohdZub32500820"><img height="40" src="https://raw.githubusercontent.com/8bithemant/8bithemant/master/twitter.png?raw=true"></a>&nbsp;&nbsp;
+<a href="https://devpost.com/shashan27"><img height="40" src="https://image.pngaaa.com/518/3742518-middle.png?raw=true"></a>&nbsp;&nbsp;
 <a href="https://m.facebook.com/shashan27"><img height="40" src="https://raw.githubusercontent.com/8bithemant/8bithemant/master/spotify.png?raw=true"></a>&nbsp;&nbsp;
  <a href="https://github.com/shashan27"><img height="40" src="https://img.shields.io/github/followers/shashan27?label=Follow&style=social"></a>&nbsp;&nbsp;
  </p>
