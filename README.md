@@ -8,14 +8,11 @@
 -   ❤️ Let's build a healthy community together
 
 
-![Zubair's GitHub stats](https://github-readme-stats.vercel.app/api?username=Mohdzubair3056&show_icons=true&theme=radical)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Mohdzubair3056&theme=radical)]
-
 ### :zap: Github Stats
 
-  <img align="left" src="https://github-readme-stats.vercel.app/api?username=Mohdzubair3056&show_icons=true&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="Sumanth's Github Stats" width="60%">
+  <img align="left" src="https://github-readme-stats.vercel.app/api?username=Mohdzubair3056&show_icons=true&title_color=fff&icon_color=79ff97&text_color=efefef&bg_color=24292e" alt="Zubair's Github Stats" width="60%">
   
-<img src="https://github-readme-stats.sumanth-talluri.vercel.app/api/top-langs/?username=Sumanth-Talluri&show_icons=true&hide_border=true&theme=radical" width="37%" alt="Sumanth's Top Languages">
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Mohdzubair3056&show_icons=true&hide_border=true&theme=radical" width="37%" alt="Zubair's Top Languages">
 
 
 
