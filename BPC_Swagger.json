@@ -13,11 +13,42 @@
     ],
     "tags": [
         {
+            "name": "Real Card",
+            "description": "Real Card Operations - Registering a card, updating, deleting or searching registered real cards."
+        },
+        {
             "name": "Funding Source",
             "description": "Funding Source Operations - Creating a funding source with controls, updating, deleting or retrieving controls associated with a funding source."
         }
     ],
     "paths": {
+        "/real-card-accounts": {
+            "post": {
+                "tags": [
+                    "Real Card"
+                ],
+                "summary": "Registering a real card",
+                "description": "This endpoint allows users to register a real card account",
+                "operationId": "addRealCard",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/RealCardAccount"
+                },
+                "responses": {
+                    "201": {
+                        "$ref": "#/components/responses/RealCardAccount"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/RealCardBadRequestError"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/AccountUnauthorizedError"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/AccountForbiddenError"
+                    }
+                }
+            }
+        },
         "/funding-sources": {
             "post": {
                 "tags": [
@@ -48,7 +79,117 @@
     },
     "components": {
         "schemas": {
+            "RealCardAccount": {
+                "description": "Real Card Account",
+                "required": [
+                    "nameOnCard",
+                    "accountNumber",
+                    "ownerGuid",
+                    "expiry"
+                ],
+                "type": "object",
+                "properties": {
+                    "nameOnCard": {
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "type": "string",
+                        "pattern": ".*\\S.*",
+                        "description": "Name on the card",
+                        "example": "John Doe"
+                    },
+                    "ownerGuid": {
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "type": "string",
+                        "pattern": "^[A-Za-z0-9_=-]+$",
+                        "description": "The globally unique identifier of the entity under which the card is registered. The ownerGUID is the same as the Issuer GUID or Corp GUID.",
+                        "example": "SENTTY13379505AC33CDA796BCBE850EADAF625FAD6B071E8D100CB1ECBEA76AD402DE1519037869"
+                    },
+                    "authorizationControlsEnabled": {
+                        "type": "boolean",
+                        "description": "Defines if card controls should be enabled",
+                        "example": true
+                    },
+                    "accountNumber": {
+                        "maxLength": 19,
+                        "minLength": 12,
+                        "pattern": "^[0-9]*$",
+                        "type": "string",
+                        "description": "The account number. For a card account this is the associated real card number.",
+                        "example": "5569507890123457042"
+                    },
+                    "unmaskedAccountNumber": {
+                        "type": "boolean",
+                        "description": "Defines if account number displayed should be unmasked.",
+                        "example": true,
+                        "writeOnly": true
+                    },
+                    "expiry": {
+                        "minLength": 7,
+                        "maxLength": 7,
+                        "type": "string",
+                        "pattern": "^20[2-9][0-9]-(0[1-9]|1[012])$",
+                        "description": "Card expiry date in yyyy-MM format",
+                        "example": "2031-11"
+                    },
+                    "billingCurrency": {
+                        "maxLength": 3,
+                        "minLength": 3,
+                        "pattern": "^[0-9]*$",
+                        "type": "string",
+                        "description": "Currency code as defined in ISO-4217A standard numeric code",
+                        "readOnly": true,
+                        "example": "826"
+                    },
+                    "billingCurrencyAlphabetic": {
+                        "maxLength": 3,
+                        "minLength": 3,
+                        "pattern": "^[A-Z]+$",
+                        "type": "string",
+                        "description": "Alphabetic currency code as defined in ISO-4217 standard numeric code",
+                        "readOnly": true,
+                        "example": "GBP"
+                    },
+                    "active": {
+                        "type": "boolean",
+                        "description": "Defines if the account is active.",
+                        "readOnly": true,
+                        "example": true
+                    },
+                    "createdDate": {
+                        "type": "string",
+                        "description": "Date when the account was created",
+                        "readOnly": true,
+                        "format": "date-time",
+                        "example": "2020-10-06T11:09:42.000Z"
+                    },
+                    "lastUpdateDate": {
+                        "type": "string",
+                        "description": "Timestamp of last update.",
+                        "readOnly": true,
+                        "format": "date-time",
+                        "example": "2020-10-06T11:09:42.000Z"
+                    },
+                    "applicationSource": {
+                        "type": "string",
+                        "description": "The source application using the resource/API.",
+                        "example": "bpc",
+                        "pattern": "[A-Za-z0-9]+",
+                        "minLength": 1,
+                        "maxLength": 16
+                    },
+                    "accountGuid": {
+                        "minLength": 1,
+                        "maxLength": 100,
+                        "type": "string",
+                        "description": "The globally unique identifier of the real card account",
+                        "readOnly": true,
+                        "example": "0ENTeb9a0875b26b2518071f9a54f0d9a2ece17ffc43a065a64659f056faf5a621461701259037"
+                    }
+                }
+            },
             "FundingSource": {
+                "description": "Funding Source",
                 "required": [
                     "realCardGuid"
                 ],
@@ -123,9 +264,8 @@
                         "description": "The globally unique identifier for a custom data collection",
                         "example": "0ADN14dde4804a167b7ed7b21d688a70bdf8d4e58e05e11acf0b19264903330315fe1683912115"
                     }
-                },
-                "description": "Funding Source"
-            },
+                }
+            },        
             "ErrorWrapper": {
                 "required": [
                     "Errors"
@@ -207,6 +347,13 @@
             }
         },
         "headers": {
+            "Real-Card-Location-Header": {
+                "description": "The URL to retrieve the created resource",
+                "schema": {
+                    "type": "string",
+                    "example": "/real-card-accounts/0ENT7118cf4b2387c6e5d32e9d9fb7bcb113f9546b7d1779132bbfa25900b0f408e81701184662"
+                }
+            },
             "Funding-Source-Location-Header": {
                 "description": "The URL to retrieve the created resource",
                 "schema": {
@@ -216,6 +363,17 @@
             }
         },
         "requestBodies": {
+            "RealCardAccount": {
+                "description": "Real Card to be registered.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/RealCardAccount"
+                        }
+                    }
+                },
+                "required": true
+            },
             "FundingSource": {
                 "description": "Funding Source to be registered.",
                 "content": {
@@ -229,6 +387,29 @@
             }
         },
         "responses": {
+            "RealCardBadRequestError": {
+                "description": "Invalid OwnerGuid Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorWrapper"
+                        },
+                        "example": {
+                            "Errors": {
+                                "Error": [
+                                    {
+                                        "Source": "account-service",
+                                        "ReasonCode": "field.invalid",
+                                        "Description": "Owner GUID does not exist",
+                                        "Recoverable": false,
+                                        "Details": "ownerGuid"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
             "FundingSourceBadRequestError": {
                 "description": "Invalid Request",
                 "content": {
@@ -300,6 +481,33 @@
                                     }
                                 ]
                             }
+                        }
+                    }
+                }
+            },
+            "RealCardAccount": {
+                "description": "Real Card Account",
+                "headers": {
+                    "Location": {
+                        "$ref": "#/components/headers/Real-Card-Location-Header"
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/RealCardAccount"
+                        },
+                        "example": {
+                            "accountGuid": "0ENT7118cf4b2387c6e5d32e9d9fb7bcb113f9546b7d1779132bbfa25900b0f408e81701184662",
+                            "expiry": "2031-11",
+                            "active": true,
+                            "createdDate": "2023-11-28T15:17:42.920Z",
+                            "lastUpdateDate": "2023-11-28T15:17:42.920Z",
+                            "applicationSource": "bpc",
+                            "nameOnCard": "John Doe",
+                            "ownerGuid": "SENTTY13379505AC33CDA796BCBE850EADAF625FAD6B071E8D100CB1ECBEA76AD402DE1519037869",
+                            "authorizationControlsEnabled": true,
+                            "accountNumber": "5569507890123457042"
                         }
                     }
                 }
