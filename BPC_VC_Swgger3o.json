@@ -1,0 +1,1235 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+       "title": "Mastercard RCN Registration and FundingSource Generation API",
+        "version": "1.0.0",
+        "description": "APIs for Virtual card generation in mastercard"
+    },
+    "servers": [
+        {
+            "url": "https://sandbox.apiedge.mastercard.com/commercial/",
+            "description": "Sandbox Server"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Virtual Card",
+            "description": "Virtual Card Operations - Generating a VCN with controls, updating, deleting or searching created virtual cards."
+        }
+    ],
+    "paths": {
+        "/virtual-card-accounts": {
+            "post": {
+                "tags": [
+                    "Virtual Card"
+                ],
+                "summary": "Registering a virtual card",
+                "description": "This endpoint allows users to register a virtual card account",
+                "operationId": "addVirtualCard",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/VirtualCardAccountCreation"
+                },
+                "responses": {
+                    "201": {
+                        "$ref": "#/components/responses/VirtualCardAccount"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/VirtualCardBadRequestError"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/AccountUnauthorizedError"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/AccountForbiddenError"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "VirtualCardAccount": {
+              "description": "Virtual card account object containing detailed information",
+              "type": "object",
+              "properties": {
+                "cvc": {
+                  "minLength": 3,
+                  "type": "string",
+                  "description": "Card Verification Code.",
+                  "readOnly": true,
+                  "example": "123"
+                },
+                "rules": {
+                  "$ref": "#/components/schemas/VirtualCardControl"
+                },
+                "transactionTolerances": {
+                  "type": "array",
+                  "description": "Transaction tolerance for currencies",
+                  "items": {
+                    "$ref": "#/components/schemas/TransactionTolerance"
+                  }
+                },
+                "unmaskedAccountNumber": {
+                  "type": "boolean",
+                  "description": "Defines if account number displayed should be unmasked.",
+                  "example": true,
+                  "writeOnly": true
+                },
+                "accountNumber": {
+                  "maxLength": 19,
+                  "minLength": 12,
+                  "pattern": "^[0-9]*$",
+                  "type": "string",
+                  "description": "The account number. For a card account this is the associated virtual card number.",
+                  "example": "523456789123456789",
+                  "readOnly": true
+                },
+                "customDataGuid": {
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_=-]+$",
+                  "type": "string",
+                  "description": "The globally unique identifier for a custom data collection",
+                  "example": "0ADN14dde4804a167b7ed7b21d688a70bdf8d4e58e05e11acf0b19264903330315fe1683912115"
+                },
+                "fundingSourceGuid": {
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "type": "string",
+                  "description": "The globally unique identifier for the funding source.",
+                  "example": "0ENTb49a0ec199d9365c9565679c809fba51d41e25dbcfc1f3caaf548cfab10d33101701766599"
+                },
+                "ownerGuid": {
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "type": "string",
+                  "readOnly": true,
+                  "description": "The globally unique identifier of the entity under which the card is registered. The ownerGUID is the same as the Issuer GUID or Corp GUID.",
+                  "example": "SENTTY98632405AC33CDA796BCBE850EADAF625FAD6B071E8D100CB1ECBEA"
+                },
+                "accountGuid": {
+                  "minLength": 1,
+                  "maxLength": 100,
+                  "type": "string",
+                  "description": "The globally unique identifier of the virtual card account",
+                  "readOnly": true,
+                  "example": "0ENT6d8f279532fff6e27c31b2bc3e04eb59a7799ebabd130757b0129bc2fa029b2b1702046890"
+                },
+                "expiry": {
+                  "minLength": 7,
+                  "maxLength": 7,
+                  "type": "string",
+                  "pattern": "^20[2-9][0-9]-(0[1-9]|1[012])$",
+                  "description": "Card expiry date in yyyy-MM format",
+                  "example": "2031-11"
+                },
+                "billingCurrency": {
+                  "maxLength": 3,
+                  "minLength": 3,
+                  "pattern": "^[0-9]*$",
+                  "type": "string",
+                  "description": "Currency code as defined in ISO-4217A standard numeric code",
+                  "readOnly": true,
+                  "example": "826"
+                },
+                "billingCurrencyAlphabetic": {
+                  "maxLength": 3,
+                  "minLength": 3,
+                  "pattern": "^[A-Z]+$",
+                  "type": "string",
+                  "description": "Alphabetic currency code as defined in ISO-4217 standard numeric code",
+                  "readOnly": true,
+                  "example": "GBP"
+                },
+                "active": {
+                  "type": "boolean",
+                  "description": "Defines if the account is active.",
+                  "readOnly": true,
+                  "example": true
+                },
+                "createdDate": {
+                  "type": "string",
+                  "description": "Date when the account was created",
+                  "readOnly": true,
+                  "format": "date-time",
+                  "example": "2020-10-06T11:09:42.000Z"
+                },
+                "lastUpdateDate": {
+                  "type": "string",
+                  "description": "Timestamp of last update.",
+                  "readOnly": true,
+                  "format": "date-time",
+                  "example": "2020-10-06T11:09:42.000Z"
+                },
+                "applicationSource": {
+                  "type": "string",
+                  "description": "The source application using the resource/API.",
+                  "example": "bpc",
+                  "pattern": "[A-Za-z0-9]+",
+                  "minLength": 1,
+                  "maxLength": 16
+                }
+              }
+            },
+            "TransactionTolerance": {
+                "required": [
+                    "cumulativeToleranceMax",
+                    "cumulativeToleranceMin",
+                    "cumulativeTolerancePercent",
+                    "currencyCode",
+                    "txTolerancePercent",
+                    "txTolerancePercentMax",
+                    "txTolerancePercentMin"
+                ],
+                "type": "object",
+                "properties": {
+                    "currencyCode": {
+                        "minLength": 3,
+                        "maxLength": 3,
+                        "pattern": "^[0-9]{3}$",
+                        "type": "string",
+                        "example": "840",
+                        "description": "Mastercard-supported International Organization for Standardization (ISO) 4217 currency codes."
+                    },
+                    "cumulativeTolerancePercent": {
+                        "type": "integer",
+                        "format": "int64",
+                        "minimum": 0,
+                        "maximum": 9999999999,
+                        "example": 1234,
+                        "description": "Cumulative tolerances in percentages that maybe applied to each virtual card."
+                    },
+                    "txTolerancePercent": {
+                        "type": "integer",
+                        "format": "int64",
+                        "minimum": 0,
+                        "maximum": 9999999999,
+                        "example": 1234,
+                        "description": "Transaction tolerances in percentages that may be applied to each virtual card."
+                    },
+                    "cumulativeToleranceMin": {
+                        "type": "integer",
+                        "format": "int64",
+                        "minimum": 0,
+                        "maximum": 9999999999,
+                        "example": 1234,
+                        "description": "Minimum cumulative tolerances in percentages that may be applied to each virtual card."
+                    },
+                    "txTolerancePercentMin": {
+                        "type": "integer",
+                        "format": "int64",
+                        "minimum": 0,
+                        "maximum": 9999999999,
+                        "example": 1234,
+                        "description": "Minimum transaction tolerances in percentages that may be applied to each virtual card."
+                    },
+                    "cumulativeToleranceMax": {
+                        "type": "integer",
+                        "format": "int64",
+                        "minimum": 0,
+                        "maximum": 9999999999,
+                        "example": 1234,
+                        "description": "Maximum cumulative tolerances in percentages that may be applied to each virtual card."
+                    },
+                    "txTolerancePercentMax": {
+                        "type": "integer",
+                        "format": "int64",
+                        "minimum": 0,
+                        "maximum": 9999999999,
+                        "example": 1234,
+                        "description": "Maximum transaction tolerances in percentages that may be applied to each virtual card."
+                    }
+                },
+                "description": "Transaction Amount Tolerance"
+            },
+            "VirtualCardControl": {
+                "type": "object",
+                "description": "Card account controls. One of accountControl or inControlRules should be provided.",
+                "properties": {
+                    "accountControl": {
+                        "$ref": "#/components/schemas/AccountControl"
+                    },
+                    "inControlRules": {
+                        "type": "array",
+                        "description": "Card Controls",
+                        "items": {
+                            "$ref": "#/components/schemas/VirtualCardInControlRule"
+                        }
+                    }
+                }
+            },
+            "AccountControl": {
+                "description": "Flag to denote In Control rules set.",
+                "type": "object",
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "description": "Control rule actions.",
+                        "example": "APPROVE",
+                        "readOnly": true,
+                        "minLength": 4
+                    },
+                    "alias": {
+                        "type": "string",
+                        "description": "Control rule alias name. The alias name should be unique.",
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "pattern": ".*\\S.*",
+                        "example": "Account Service Rule"
+                    },
+                    "cardLimit": {
+                        "$ref": "#/components/schemas/Limit"
+                    },
+                    "monthlyLimit": {
+                        "$ref": "#/components/schemas/Limit"
+                    },
+                    "dailyLimit": {
+                        "$ref": "#/components/schemas/Limit"
+                    },
+                    "weeklyLimit": {
+                        "$ref": "#/components/schemas/Limit"
+                    },
+                    "quarterlyLimit": {
+                        "$ref": "#/components/schemas/Limit"
+                    },
+                    "yearlyLimit": {
+                        "$ref": "#/components/schemas/Limit"
+                    },
+                    "geographies": {
+                        "$ref": "#/components/schemas/GeographyControl"
+                    },
+                    "merchantCategoryCodes": {
+                        "$ref": "#/components/schemas/MccControl"
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "description": "The time the card can be used from. It should be in ISO Date Time with Offset format \"yyyy-MM-dd'T'HH:mm:ss.SSSXXX\".",
+                        "example": "2020-10-06T11:09:42.000Z",
+                        "format": "date-time"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "description": "The time the card will stop being used from. It should be in ISO Date Time with Offset format \"yyyy-MM-dd'T'HH:mm:ss.SSSXXX\".",
+                        "example": "2021-10-06T11:09:42.000Z",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Limit": {
+                "description": "Limit on the card",
+                "type": "object",
+                "properties": {
+                    "cardAmount": {
+                        "type": "number",
+                        "description": "Card Limit Amount",
+                        "example": 500,
+                        "format": "float"
+                    },
+                    "availableBalance": {
+                        "type": "number",
+                        "description": "Available Card Balance",
+                        "example": 500,
+                        "format": "float",
+                        "readOnly": true
+                    },
+                    "authorisationCount": {
+                        "description": "Number of authorizations allowed",
+                        "minimum": 1,
+                        "maximum": 99999999,
+                        "example": 10,
+                        "type": "integer"
+                    }
+                }
+            },
+            "VirtualCardInControlRule": {
+                                "required": [
+                    "action",
+                    "alias"
+                ],
+                "type": "object",
+                "properties": {
+                    "action": {
+                        "minLength": 4,
+                        "maxLength": 15,
+                        "type": "string",
+                        "description": "Control rule actions. Valid values are APPROVE and DECLINE.",
+                        "example": "APPROVE",
+                        "pattern": "^(APPROVE|DECLINE)"
+                    },
+                    "alias": {
+                        "type": "string",
+                        "description": "Control rule alias name. Alias should be unique.",
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "pattern": ".*\\S.*",
+                        "example": "Account Service Control Rule"
+                    },
+                    "transactionLimits": {
+                        "type": "array",
+                        "description": "Transaction limit controls.",
+                        "items": {
+                            "$ref": "#/components/schemas/TransactionLimitControl"
+                        }
+                    },
+                    "geographies": {
+                        "type": "array",
+                        "description": "Geography controls.",
+                        "items": {
+                            "$ref": "#/components/schemas/GeographyControl"
+                        }
+                    },
+                    "velocities": {
+                        "type": "array",
+                        "description": "Velocity controls.",
+                        "items": {
+                            "$ref": "#/components/schemas/VelocityControl"
+                        }
+                    },
+                    "validityPeriods": {
+                        "type": "array",
+                        "description": "Validity period controls.",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidityPeriodControl"
+                        }
+                    },
+                    "amountRanges": {
+                        "type": "array",
+                        "description": "Amount range controls.",
+                        "items": {
+                            "$ref": "#/components/schemas/AmountRangeControl"
+                        }
+                    },
+                    "acceptorIds": {
+                        "type": "array",
+                        "description": "Merchant id controls.",
+                        "items": {
+                            "$ref": "#/components/schemas/MerchantIdControl"
+                        }
+                    },
+                    "ageingVelocities": {
+                        "type": "array",
+                        "description": "Ageing velocity controls.",
+                        "items": {
+                            "$ref": "#/components/schemas/AgeingVelocityControl"
+                        }
+                    },
+                    "curfews": {
+                        "type": "array",
+                        "description": "Curfew controls.",
+                        "items": {
+                            "$ref": "#/components/schemas/CurfewControl"
+                        }
+                    },
+                    "timeOfDays": {
+                        "type": "array",
+                        "description": "Time of day controls.",
+                        "items": {
+                            "$ref": "#/components/schemas/TimeOfDayControl"
+                        }
+                    },
+                    "merchantCategoryCodes": {
+                        "type": "array",
+                        "description": "List of Merchant Category Codes to be included in the rule. When action =\"APPROVE\" only transactions for the Merchant Category Codes included would be approved.",
+                        "items": {
+                            "$ref": "#/components/schemas/MccControl"
+                        }
+                    },
+                    "merchantNames": {
+                        "type": "array",
+                        "description": "Merchant name controls",
+                        "uniqueItems": true,
+                        "items": {
+                            "$ref": "#/components/schemas/MerchantNameControl"
+                        }
+                    },
+                    "transactionEnvironments": {
+                        "type": "array",
+                        "description": "Transaction environment controls",
+                        "uniqueItems": true,
+                        "items": {
+                            "$ref": "#/components/schemas/TransactionEnvironmentControl"
+                        }
+                    },
+                    "dataElements": {
+                        "type": "array",
+                        "description": "Data element controls",
+                        "uniqueItems": true,
+                        "items": {
+                            "$ref": "#/components/schemas/DataElementControl"
+                        }
+                    },
+                    "approveControl": {
+                        "$ref": "#/components/schemas/ApproveControl"
+                    }
+                },
+                "description": "In Control Rule"
+            },
+            "TransactionLimitControl": {
+                "required": [
+                    "amount",
+                    "negate"
+                ],
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "minimum": 0,
+                        "maximum": 99999999999999,
+                        "type": "number",
+                        "description": "The limit that will apply on a per transaction basis.",
+                        "example": 12,
+                        "format": "float"
+                    },
+                    "negate": {
+                        "type": "boolean",
+                        "description": "Defines if the rules should be negated.",
+                        "example": true,
+                        "default": true
+                    }
+                },
+                "description": "The TransactionLimit control provides the ability to limit individual transaction authorizations to a maximum amount."
+            },
+            "GeographyControl": {
+                "required": [
+                    "countryCodes",
+                    "negate"
+                ],
+                "type": "object",
+                "properties": {
+                    "countryCodes": {
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "List of country codes to be included in the rule.",
+                        "example": [
+                            "372",
+                            "826"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "negate": {
+                        "type": "boolean",
+                        "description": "Defines if the rules should be negated.",
+                        "example": true
+                    }
+                },
+                "description": "The GeographicControl provides the ability to control where a card is physically used."
+            },
+            "VelocityControl": {
+                "required": [
+                    "period",
+                    "negate"
+                ],
+                "type": "object",
+                "properties": {
+                    "maxTrans": {
+                        "minimum": 1,
+                        "maximum": 999999999,
+                        "type": "integer",
+                        "description": "Maximum number of transactions allowed.",
+                        "format": "int32",
+                        "example": 12
+                    },
+                    "cumulativeLimit": {
+                        "minimum": 0,
+                        "maximum": 99999999999999,
+                        "type": "number",
+                        "description": "Maximum allowed cumulative amount.",
+                        "example": 1200,
+                        "format": "float"
+                    },
+                    "period": {
+                        "minLength": 5,
+                        "maxLength": 10,
+                        "type": "string",
+                        "description": "The Velocity period. Valid values are DAILY, WEEKLY, QUARTERLY, CONTINUOUS, MONTHLY, and YEARLY.",
+                        "example": "DAILY",
+                        "pattern": "^(DAILY|WEEKLY|QUARTERLY|CONTINUOUS|MONTHLY|YEARLY)"
+                    },
+                    "availableBalance": {
+                        "minimum": 0,
+                        "maximum": 99999999999999,
+                        "type": "number",
+                        "description": "The cumulative spend available for the velocity control for the specified period.",
+                        "example": 1200,
+                        "format": "float",
+                        "readOnly": true
+                    },
+                    "currencyType": {
+                        "minLength": 4,
+                        "maxLength": 8,
+                        "type": "string",
+                        "description": "Type of the currency being used. Valid values are BASE and MERCHANT.",
+                        "example": "MERCHANT",
+                        "pattern": "^(BASE|MERCHANT)"
+                    },
+                    "currencyCode": {
+                        "minLength": 3,
+                        "maxLength": 3,
+                        "pattern": "^[0-9]{3}$",
+                        "type": "string",
+                        "description": "Mastercard supported International Organization for Standardization (ISO) 4217 currency codes.",
+                        "example": "840"
+                    },
+                    "endDate": {
+                        "minLength": 16,
+                        "maxLength": 28,
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "End date until which the the control is valid. It should be in ISO Date Time with Offset format \"yyyy-MM-dd'T'HH:mm:ss.SSSXXX\"",
+                        "readOnly": true,
+                        "example": "2020-10-06T11:09:42.000Z"
+                    },
+                    "negate": {
+                        "type": "boolean",
+                        "description": "Defines if the rules should be negated.",
+                        "example": true,
+                        "default": false
+                    }
+                },
+                "description": "The VelocityControl can limit the frequency, and the total cumulative amount of authorizations performed on the cardholderâ€™s account within a specified time period."
+            },
+            "ValidityPeriodControl": {
+                "required": [
+                    "from",
+                    "negate",
+                    "to"
+                ],
+                "type": "object",
+                "properties": {
+                    "from": {
+                        "minLength": 16,
+                        "maxLength": 28,
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The start date from which the control is valid. It should be in ISO Date Time with Offset format \"yyyy-MM-dd'T'HH:mm:ss.SSSXXX\"",
+                        "example": "2020-10-06T11:09:42.000Z"
+                    },
+                    "to": {
+                        "minLength": 16,
+                        "maxLength": 28,
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The end date till which the the control is valid. It should be in ISO Date Time with Offset format \"yyyy-MM-dd'T'HH:mm:ss.SSSXXX\".",
+                        "example": "2020-11-06T11:09:42.000Z"
+                    },
+                    "strictPreAuthCheck": {
+                        "type": "boolean",
+                        "description": "Defines if strict pre-auth check needs to be applied.",
+                        "default": false,
+                        "example": true
+                    },
+                    "negate": {
+                        "type": "boolean",
+                        "description": "Defines if the rules should be negated.",
+                        "default": false,
+                        "example": true
+                    }
+                },
+                "description": "The ValidityPeriod control provides the ability to limit authorization activity to a defined time period."
+            },
+            "AmountRangeControl": {
+                "required": [
+                    "currencyType",
+                    "maxAmount",
+                    "minAmount",
+                    "negate"
+                ],
+                "type": "object",
+                "properties": {
+                    "minAmount": {
+                        "minimum": 0,
+                        "maximum": 99999999999999,
+                        "type": "number",
+                        "description": "Minimum allowed amount",
+                        "format": "float",
+                        "example": 1000
+                    },
+                    "maxAmount": {
+                        "minimum": 0,
+                        "maximum": 99999999999999,
+                        "type": "number",
+                        "description": "Maximum allowed amount",
+                        "format": "float",
+                        "example": 10000
+                    },
+                    "strictPreAuthCheck": {
+                        "type": "boolean",
+                        "description": "Defines if strict pre-auth check needs to be applied.",
+                        "default": false,
+                        "example": true
+                    },
+                    "currencyType": {
+                        "minLength": 4,
+                        "maxLength": 8,
+                        "type": "string",
+                        "description": "Type of the currency being used. Valid values are BASE and MERCHANT.",
+                        "example": "MERCHANT",
+                        "pattern": "^(BASE|MERCHANT)"
+                    },
+                    "currencyCode": {
+                        "minLength": 3,
+                        "maxLength": 3,
+                        "pattern": "^[0-9]{3}$",
+                        "type": "string",
+                        "description": "Mastercard supported International Organization for Standardization (ISO) 4217 currency codes.",
+                        "example": "840"
+                    },
+                    "negate": {
+                        "type": "boolean",
+                        "description": "Defines if the rules should be negated.",
+                        "default": false,
+                        "example": true
+                    }
+                },
+                "description": "The exact amount range control will approve a transaction only if the requested amount is equal or greater than MinAmount and less than or equal to MaxAmount. In other words, if Min Amount <= Amount <= Max Amount."
+            },
+            "MerchantIdControl": {
+                "required": [
+                    "acquirerId",
+                    "acceptorId",
+                    "negate"
+                ],
+                "type": "object",
+                "properties": {
+                    "acceptorId": {
+                        "minLength": 15,
+                        "maxLength": 15,
+                        "type": "string",
+                        "description": "The Merchant Id.",
+                        "example": "123456789012345"
+                    },
+                    "acquirerId": {
+                        "minLength": 1,
+                        "maxLength": 10,
+                        "pattern": ".*\\S.*",
+                        "type": "string",
+                        "description": "The Acquiring Institution ID Code which identifies the acquiring institution (for example, merchant bank) or its agent.",
+                        "example": "3"
+                    },
+                    "negate": {
+                        "type": "boolean",
+                        "description": "Defines if the rules should be negated.",
+                        "default": false,
+                        "example": true
+                    }
+                },
+                "description": "The Merchant ID control provides the ability to limit authorizations to particular merchants."
+            },
+            "AgeingVelocityControl": {
+                "required": [
+                    "authorizationHoldDays",
+                    "cumulativeLimit",
+                    "timeZone",
+                    "negate"
+                ],
+                "type": "object",
+                "properties": {
+                    "authorizationHoldDays": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9999,
+                        "description": "Number of days an authorization holds before ageing off.",
+                        "format": "int32",
+                        "example": 1234
+                    },
+                    "cumulativeLimit": {
+                        "minimum": 0,
+                        "maximum": 99999999999999,
+                        "type": "number",
+                        "description": "Maximum allowed cumulative amount.",
+                        "example": 1000,
+                        "format": "float"
+                    },
+                    "timeZone": {
+                        "minLength": 3,
+                        "maxLength": 25,
+                        "type": "string",
+                        "description": "Time zone that is used for age-off calculations.",
+                        "example": "UTC"
+                    },
+                    "availableCredit": {
+                        "minimum": 0,
+                        "maximum": 99999999999999,
+                        "type": "number",
+                        "description": "The cumulative spend available for the velocity control for the specified period.",
+                        "example": 1000,
+                        "format": "float",
+                        "readOnly": true
+                    },
+                    "currencyType": {
+                        "minLength": 4,
+                        "maxLength": 8,
+                        "type": "string",
+                        "description": "Type of the currency being used. Valid values are BASE and MERCHANT.",
+                        "example": "MERCHANT",
+                        "pattern": "^(BASE|MERCHANT)"
+                    },
+                    "currencyCode": {
+                        "minLength": 3,
+                        "maxLength": 3,
+                        "pattern": "^[0-9]{3}$",
+                        "type": "string",
+                        "description": "Mastercard supported International Organization for Standardization (ISO) 4217 currency codes.",
+                        "example": "840"
+                    },
+                    "negate": {
+                        "type": "boolean",
+                        "description": "Defines if the rules should be negated.",
+                        "default": false,
+                        "example": true
+                    }
+                },
+                "description": "The AgingVelocityControl provides the requester with the ability to set a notional credit line through the CumulativeControl. This control keeps track of the current remaining available credit and approves a transaction only if the requested amount is less than or equal to the remaining available credit."
+            },
+            "CurfewControl": {
+                "required": [
+                    "days",
+                    "fromTime",
+                    "negate",
+                    "toTime"
+                ],
+                "type": "object",
+                "properties": {
+                    "fromTime": {
+                        "minLength": 5,
+                        "maxLength": 5,
+                        "pattern": "^([01][0-9]|2[0-3]):([0-5][0-9])$",
+                        "type": "string",
+                        "description": "The start time from which authorizations will be allowed.",
+                        "example": "08:20"
+                    },
+                    "toTime": {
+                        "minLength": 5,
+                        "maxLength": 5,
+                        "pattern": "^([01][0-9]|2[0-3]):([0-5][0-9])$",
+                        "type": "string",
+                        "description": "The end time at which authorizations will be allowed.",
+                        "example": "18:20"
+                    },
+                    "timeZone": {
+                        "minLength": 3,
+                        "maxLength": 25,
+                        "type": "string",
+                        "description": "Time zone that is used for age-off calculations.",
+                        "example": "UTC"
+                    },
+                    "days": {
+                        "maxItems": 7,
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "Days of week. Valid values are SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, and SATURDAY.",
+                        "example": "SUNDAY",
+                        "pattern": "^(SUNDAY|MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY)$",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "negate": {
+                        "type": "boolean",
+                        "description": "Defines if the rules should be negated.",
+                        "default": false,
+                        "example": true
+                    }
+                },
+                "description": "The following table lists the curfew control attributes details relevant to the example."
+            },
+            "MccControl": {
+                "required": [
+                    "mccs",
+                    "negate"
+                ],
+                "type": "object",
+                "properties": {
+                    "negate": {
+                        "type": "boolean",
+                        "description": "Defines if the rules should be negated.",
+                        "default": false,
+                        "example": true
+                    },
+                    "mccs": {
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "List of merchant category codes",
+                        "example": [
+                            "3001",
+                            "3005"
+                        ],
+                        "items": {
+                            "type": "string",
+                            "example": "items"
+                        }
+                    }
+                },
+                "description": "The Card Acceptor Business Codes (MCC) control can control the type of purchases for which a card is used."
+            },
+            "TimeOfDayControl": {
+                "required": [
+                    "negate",
+                    "timeZone",
+                    "times"
+                ],
+                "type": "object",
+                "properties": {
+                    "times": {
+                        "maxItems": 7,
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "Times of day",
+                        "items": {
+                            "$ref": "#/components/schemas/TimeOfDay"
+                        }
+                    },
+                    "timeZone": {
+                        "minLength": 3,
+                        "maxLength": 25,
+                        "type": "string",
+                        "description": "Time zone that is used for age-off calculations.",
+                        "example": "UTC"
+                    },
+                    "negate": {
+                        "type": "boolean",
+                        "description": "Defines if the rules should be negated.",
+                        "default": false,
+                        "example": true
+                    }
+                },
+                "description": "The TimeofDaycontrol provides the ability to limit authorization activity to defined time periods for each day."
+            },
+            "TimeOfDay": {
+                "required": [
+                    "day",
+                    "fromTime",
+                    "toTime"
+                ],
+                "type": "object",
+                "properties": {
+                    "day": {
+                        "minLength": 6,
+                        "maxLength": 9,
+                        "type": "string",
+                        "example": "SUNDAY",
+                        "description": "Days of week. Valid values are SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, and SATURDAY.",
+                        "pattern": "^(SUNDAY|MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY)"
+                    },
+                    "fromTime": {
+                        "minLength": 5,
+                        "maxLength": 5,
+                        "pattern": "^([01][0-9]|2[0-3]):([0-5][0-9])$",
+                        "type": "string",
+                        "description": "The start time from which authorizations will be allowed.",
+                        "example": "08:21"
+                    },
+                    "toTime": {
+                        "minLength": 5,
+                        "maxLength": 5,
+                        "pattern": "^([01][0-9]|2[0-3]):([0-5][0-9])$",
+                        "type": "string",
+                        "description": "The end time from which authorizations will be allowed.",
+                        "example": "21:00"
+                    }
+                }
+            },
+            "MerchantNameControl": {
+                "required": [
+                    "negate",
+                    "merchantNames"
+                ],
+                "type": "object",
+                "description": "Allows you to limit authorizations to particular merchants by using the merchantâ€™s name.",
+                "properties": {
+                    "negate": {
+                        "type": "boolean",
+                        "description": "If negation applied",
+                        "default": false,
+                        "example": true
+                    },
+                    "merchantNames": {
+                        "type": "array",
+                        "description": "The card acceptor name as defined in field DE43 of the authorisation message.",
+                        "example": [
+                            "Amazon"
+                        ],
+                        "uniqueItems": true,
+                        "items": {
+                            "type": "string"
+                        },
+                        "minLength": 1,
+                        "maxLength": 100
+                    }
+                }
+            },
+            "TransactionEnvironmentControl": {
+                "required": [
+                    "negate",
+                    "environmentCodes"
+                ],
+                "type": "object",
+                "description": "Provides the ability to limit authorizations to particular environments.",
+                "properties": {
+                    "negate": {
+                        "type": "boolean",
+                        "description": "If negation applied",
+                        "default": false,
+                        "example": true
+                    },
+                    "environmentCodes": {
+                        "type": "array",
+                        "description": "Environment codes; Valid values are ATM (Automated Teller Machine), ECOM (eCommerce), MOTO (Mail Order Telephone Order where neither card nor cardholder are present), PAYPASS (Contactless payment application), POS (Transaction where cardholder and card both present within a retail environment) and PWCB (Purchase with Cash Back)",
+                        "example": [
+                            "ATM"
+                        ],
+                        "uniqueItems": true,
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "DataElementControl": {
+                "required": [
+                    "negate",
+                    "dataElement",
+                    "values"
+                ],
+                "type": "object",
+                "description": "Is used to evaluate certain data elements which provide information about the characteristics of card transactions.",
+                "properties": {
+                    "negate": {
+                        "type": "boolean",
+                        "description": "If negation applied",
+                        "default": false,
+                        "example": true
+                    },
+                    "dataElement": {
+                        "type": "string",
+                        "description": "Data Element (DE); Valid values are PROCESSING_CODE, PAN_ENTRY_MODE and POS_TERM_CAPABILITY_INDICATOR. For processing code refer to [Mastercard Data Element Specification](https://w201.mastercardconnect.com/hsm3ca267/homememb/library/shared/ENG/CI/suitehelp/index.html) Document. For PROCESSING_CODE refer to [field 3.1](https://w201.mastercardconnect.com/hsm3ca267/homememb/library/shared/ENG/CI/suitehelp/r_DE_003_SF_01_CardholderTransactionTypeCode.html). For PAN_ENTRY_MODE refer to [field 22.1](https://w201.mastercardconnect.com/hsm3ca267/homememb/library/shared/ENG/CI/suitehelp/r_DE022_SF01_POSTerminalPANEntryMode.html). For POS_TERM_CAPABILITY_INDICATOR refer to field [61.11](https://w201.mastercardconnect.com/hsm3ca267/homememb/library/shared/ENG/CI/suitehelp/r_DE061_SF01_POSTerminalAttendance.html).",
+                        "example": "PROCESSING_CODE"
+                    },
+                    "values": {
+                        "type": "array",
+                        "description": "For processing code refer to the [Mastercard Data Element Specification](https://w201.mastercardconnect.com/hsm3ca267/homememb/library/shared/ENG/CI/suitehelp/index.html) Document. For PROCESSING_CODE refer to field 3.1. For PAN_ENTRY_MODE refer to field 22.1. For POS_TERM_CAPABILITY_INDICATOR refer to field [61.11](https://w201.mastercardconnect.com/hsm3ca267/homememb/library/shared/ENG/CI/suitehelp/r_DE061_SF01_POSTerminalAttendance.html).",
+                        "example": [
+                            "00",
+                            "01"
+                        ],
+                        "uniqueItems": true,
+                        "items": {
+                            "type": "string"
+                        },
+                        "minLength": 1,
+                        "maxLength": 2
+                    }
+                }
+            },
+            "ApproveControl": {
+                "type": "object",
+                "description": "Manages if all others controls can be used or not. Typically used as a default approve rule to approve all authorizations.",
+                "required": [
+                    "negate"
+                ],
+                "properties": {
+                    "negate": {
+                        "type": "boolean",
+                        "description": "Defines if the controls should be negated",
+                        "example": true,
+                        "default": false
+                    }
+                }
+            },
+            "ErrorWrapper": {
+                "required": [
+                    "Errors"
+                ],
+                "type": "object",
+                "properties": {
+                    "Errors": {
+                        "$ref": "#/components/schemas/Errors"
+                    }
+                },
+                "example": {
+                    "Errors": {
+                        "Error": [
+                            {
+                                "Source": "some-service",
+                                "ReasonCode": "field.invalid",
+                                "Description": "Resource GUID does not exist",
+                                "Recoverable": false,
+                                "Details": "resourceGuid"
+                            }
+                        ]
+                    }
+                }
+            },
+            "Errors": {
+                "type": "object",
+                "required": [
+                    "Error"
+                ],
+                "properties": {
+                    "Error": {
+                        "$ref": "#/components/schemas/ErrorList"
+                    }
+                }
+            },
+            "ErrorList": {
+                "type": "array",
+                "minItems": 1,
+                "description": "List of errors returned from server.",
+                "items": {
+                    "$ref": "#/components/schemas/Error"
+                }
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "Source": {
+                        "description": "An element used to indicate the source of the issue causing this error.",
+                        "type": "string",
+                        "example": "format.invalid"
+                    },
+                    "ReasonCode": {
+                        "description": "A reason code for the error that has occurred.",
+                        "type": "string",
+                        "example": "field.required"
+                    },
+                    "Description": {
+                        "description": "Description of the reason the operation failed.",
+                        "type": "string",
+                        "example": "We could not handle your request"
+                    },
+                    "Recoverable": {
+                        "description": "Generated by the gateway to indicate if the request could presented again for processing. Either 'true' or 'false'.",
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "Details": {
+                        "description": "Identifies the description of the error.",
+                        "type": "string",
+                        "example": "accountGuid is required but is missing"
+                    }
+                },
+                "required": [
+                    "Source",
+                    "ReasonCode",
+                    "Description",
+                    "Recoverable"
+                ]
+            }
+        },
+        "responses": {
+            "VirtualCardBadRequestError": {
+                "description": "Invalid Request",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorWrapper"
+                        },
+                        "example": {
+                            "Errors": {
+                                "Error": [
+                                    {
+                                        "Source": "account-service",
+                                        "ReasonCode": "field.required",
+                                        "Description": "fundingSourceGuid is a required field and must be populated",
+                                        "Recoverable": false,
+                                        "Details": "fundingSourceGuid"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "AccountUnauthorizedError": {
+                "description": "Authentication Required",
+                "headers": {
+                    "WWW-Authenticate": {
+                        "description": "Method of authentication",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorWrapper"
+                        },
+                        "example": {
+                            "Errors": {
+                                "Error": [
+                                    {
+                                        "Source": "account-service",
+                                        "ReasonCode": "user.authentication.absent",
+                                        "Description": "No authentication data was found for the user",
+                                        "Recoverable": false
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "AccountForbiddenError": {
+                "description": "Not Authorized",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorWrapper"
+                        },
+                        "example": {
+                            "Errors": {
+                                "Error": [
+                                    {
+                                        "Source": "account-service",
+                                        "ReasonCode": "user.authorization.missing",
+                                        "Description": "No authorization data was found for the user or their session",
+                                        "Recoverable": false
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "VirtualCardAccount": {
+                "description": "Virtual Card Account",
+                "headers": {
+                    "Location": {
+                        "$ref": "#/components/headers/Virtual-Card-Location-Header"
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/VirtualCardAccount"
+                        }
+                    }
+                }
+            }
+        },
+        "requestBodies": {
+            "VirtualCardAccountCreation": {
+                "required": true,
+                "description": "Virtual card account",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/VirtualCardAccount"
+                        }
+                    }
+                }
+            }
+        },
+        "headers": {
+            "Virtual-Card-Location-Header": {
+                "description": "The URL to retrieve the created resource",
+                "schema": {
+                    "type": "string",
+                    "example": "/virtual-card-accounts/0ENT6d8f279532fff6e27c31b2bc3e04eb59a7799ebabd130757b0129bc2fa029b2b1702046890"
+                }
+            }
+        }
+    }
+}
